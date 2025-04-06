@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="jwp.model.User" %>
-
 
 <!doctype html>
 <html lang="ko">
@@ -69,22 +69,14 @@
             </tr>
             </thead>
             <tbody>
-            <%
-                Collection<User> users = (Collection<User>) request.getAttribute("users");
-                for (User user : users) {
-            %>
+            <c:forEach items="${users}" var="user">
             <tr>
-                <th class="col-md-3"><%= user.getUserId() %>
-                </th>
-                <th class="col-md-3"><%= user.getName() %>
-                </th>
-                <th class="col-md-3"><%= user.getEmail() %>
-                </th>
+                <th class="col-md-3">${user.userId}</th>
+                <th class="col-md-3">${user.name}</th>
+                <th class="col-md-3">${user.email}</th>
                 <th class="col-md-3"><a href="#" class="btn btn-success" role="button">수정</a></th>
             </tr>
-            <%
-                }
-            %>
+            </c:forEach>
             </tbody>
         </table>
     </div>
