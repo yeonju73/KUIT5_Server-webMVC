@@ -18,8 +18,8 @@ repositories {
 }
 
 ext {
-    springVersion = "5.1.8.RELEASE"
-    tomcatVersion = '8.5.42'
+    springVersion = "5.3.30"
+    tomcatVersion = '10.1.35'
 }
 
 dependencies {
@@ -31,16 +31,15 @@ dependencies {
     implementation("org.springframework:spring-web:$springVersion")
     implementation "org.reflections:reflections:0.10.2"
 
-    implementation("org.apache.commons:commons-dbcp2:2.6.0")
+    implementation("org.apache.commons:commons-dbcp2:2.11.0")
+    runtimeOnly("com.h2database:h2:2.2.224")
 
-    runtimeOnly("com.h2database:h2:2.1.214")
-    runtimeOnly('mysql:mysql-connector-java:8.0.28')
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.1'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
 
     implementation("org.apache.tomcat.embed:tomcat-embed-core:$tomcatVersion")
-    implementation("org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2")
     implementation("org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion")
-    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7.1'
 }
 
 test {
