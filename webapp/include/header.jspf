@@ -19,7 +19,7 @@
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <a href="/user/logout" role="button" class="btn btn-outline-primary me-2">Log-Out</a>
-                    <a href="/user/updateForm?userId=${sessionScope.user.userId}" role="button" class="btn btn-primary" >개인정보수정</a>
+                    <a href="/user/update?userId=${sessionScope.user.userId}" role="button" class="btn btn-primary" >개인정보수정</a>
                 </c:when>
                 <c:otherwise>
                     <a href="/user/login.jsp" type="button" class="btn btn-outline-primary me-2">Log-In</a>
