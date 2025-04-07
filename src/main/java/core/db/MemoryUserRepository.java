@@ -38,4 +38,8 @@ public class MemoryUserRepository {
             users.put(user.getUserId(), user);
         }
     }
+
+    public boolean checkPassword(User user, String password) {
+        return user.getPassword().equals(password);
+    }
 }
