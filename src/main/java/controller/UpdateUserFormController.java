@@ -30,8 +30,6 @@ public class UpdateUserFormController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = MemoryUserRepository.getInstance().findUserById(req.getParameter("userId"));
-
         User updateUser = new User(req.getParameter("userId"),
                 req.getParameter("password"),
                 req.getParameter("name"),
