@@ -18,8 +18,9 @@ public class LoginController extends HttpServlet {
         MemoryUserRepository repository = MemoryUserRepository.getInstance();
         User user = repository.findUserById(req.getParameter("userId"));
 
-        if (user == null || !repository.checkPassword(user, req.getParameter("password"))){
-            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid username or password");
+        if (user == null || !user.matchPassword(req.getParameter("password"))){
+            System.out.println("User 로그인 실패");
+            resp.sendRedirect("/user/login_failed.jsp");
             return;
         }
 

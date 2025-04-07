@@ -39,7 +39,4 @@ public class MemoryUserRepository {
         }
     }
 
-    public boolean checkPassword(User user, String password) {
-        return user.getPassword().equals(password);
-    }
 }
