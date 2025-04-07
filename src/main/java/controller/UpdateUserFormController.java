@@ -21,6 +21,7 @@ public class UpdateUserFormController extends HttpServlet {
         if (user == null){
             // 사용자 정보가 없을 경우 에러 처리
             resp.sendError(HttpServletResponse.SC_NOT_FOUND, "User not found");
+            return;
         }
 
         req.setAttribute("user", user);
