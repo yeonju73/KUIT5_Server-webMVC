@@ -1,23 +1,29 @@
 package controller;
 
 import core.db.MemoryUserRepository;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jwp.model.User;
 
-
 import java.io.IOException;
 
-@WebServlet("/user/signup")
-//HttpServlet 클래스가 Servlet 을 implement 하고 있음
-public class CreateUserController extends HttpServlet {
+import static jakarta.servlet.http.HttpServletResponse.SC_METHOD_NOT_ALLOWED;
+
+public class CreateUserController implements Controller {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public String execute(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        if (req.getMethod().equalsIgnoreCase("GET")) return doGet();
+        if (req.getMethod().equalsIgnoreCase("POST")) return doPost(req);
+        resp.sendError(SC_METHOD_NOT_ALLOWED, "Method not allowed");
+        return null;
+    }
 
+    private String doGet() {
+        return "/user/form";
+    }
+
+    private static String doPost(HttpServletRequest req) {
         User user = new User(req.getParameter("userId"),
                 req.getParameter("password"),
                 req.getParameter("name"),
@@ -25,6 +31,6 @@ public class CreateUserController extends HttpServlet {
         MemoryUserRepository.getInstance().addUser(user);
         System.out.println("User 회원가입 완료");
 
-        resp.sendRedirect("/");
+        return "redirect:/";
     }
 }
