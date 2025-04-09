@@ -24,12 +24,12 @@ public class ListUserController extends HttpServlet {
         HttpSession session = req.getSession();
         Object value = session.getAttribute("user");
 
-        if (!(value instanceof User)) {
-            resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid login or session");
+        if (!(value instanceof User user)) {
+            RequestDispatcher rd = req.getRequestDispatcher("/user/login.jsp");
+            rd.forward(req, resp);
             return;
         }
 
-        User user = (User) value;
         System.out.println("logged in user: " + user.getUserId());
 
         Collection<User> users = MemoryUserRepository.getInstance().findAll();
