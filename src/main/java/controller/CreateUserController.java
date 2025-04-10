@@ -1,5 +1,8 @@
 package controller;
 
+import controller.enums.JSP;
+import controller.enums.REDIRECT;
+import controller.enums.URL;
 import core.db.MemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -20,7 +23,7 @@ public class CreateUserController implements Controller {
     }
 
     private String doGet() {
-        return "/user/form";
+        return JSP.REGISTER.getJspPath();
     }
 
     private static String doPost(HttpServletRequest req) {
@@ -31,6 +34,6 @@ public class CreateUserController implements Controller {
         MemoryUserRepository.getInstance().addUser(user);
         System.out.println("User 회원가입 완료");
 
-        return "redirect:/";
+        return REDIRECT.getRedirectPathString(URL.HOME);
     }
 }

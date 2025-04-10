@@ -1,5 +1,8 @@
 package controller;
 
+import controller.enums.JSP;
+import controller.enums.REDIRECT;
+import controller.enums.URL;
 import core.db.MemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -21,7 +24,7 @@ public class LoginController implements Controller {
     }
 
     private String doGet() {
-        return "/user/login";
+        return JSP.LOGIN.getJspPath();
     }
 
     private static String doPost(HttpServletRequest req) {
@@ -30,13 +33,13 @@ public class LoginController implements Controller {
 
         if (user == null || !user.matchPassword(req.getParameter("password"))){
             System.out.println("User 로그인 실패");
-            return "/user/login_failed";
+            return JSP.LOGIN_FAILED.getJspPath();
         }
 
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
         System.out.println("User 로그인 완료");
 
-        return "redirect:/user/userList";
+        return REDIRECT.getRedirectPathString(URL.USER_LIST);
     }
 }

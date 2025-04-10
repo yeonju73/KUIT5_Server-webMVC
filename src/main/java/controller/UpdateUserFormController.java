@@ -1,5 +1,8 @@
 package controller;
 
+import controller.enums.JSP;
+import controller.enums.REDIRECT;
+import controller.enums.URL;
 import core.db.MemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -30,7 +33,7 @@ public class UpdateUserFormController implements Controller {
         }
 
         req.setAttribute("user", user);
-        return "/user/updateForm";
+        return JSP.UPDATE_FORM.getJspPath();
     }
 
     private String doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -52,6 +55,6 @@ public class UpdateUserFormController implements Controller {
 
         System.out.println("User 개인정보 업데이트 완료");
 
-        return "redirect:/user/userList";
+        return REDIRECT.getRedirectPathString(URL.USER_LIST);
     }
 }

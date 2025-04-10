@@ -8,10 +8,9 @@ public enum URL {
     USER_LIST("/user/userList"),
     UPDATE("/user/update");
 
-
     private final String url;
 
-    private URL(String url) {
+    URL(String url) {
         this.url = url;
     }
 

@@ -1,5 +1,8 @@
 package controller;
 
+import controller.enums.JSP;
+import controller.enums.REDIRECT;
+import controller.enums.URL;
 import core.db.MemoryUserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,13 +20,13 @@ public class ListUserController implements Controller {
         Object value = session.getAttribute("user");
 
         if (!(value instanceof User user)) {
-            return "redirect:/user/login";
+            return REDIRECT.getRedirectPathString(URL.LOGIN);
         }
         System.out.println("logged in user: " + user.getUserId());
 
         Collection<User> users = MemoryUserRepository.getInstance().findAll();
         req.setAttribute("users", users); // users 저장
 
-        return "/user/list";
+        return JSP.USER_LIST.getJspPath();
     }
 }

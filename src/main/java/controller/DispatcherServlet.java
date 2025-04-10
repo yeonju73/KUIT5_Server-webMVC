@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-import static controller.enums.redirect.REDIRECT;
+import static controller.enums.REDIRECT.REDIRECT;
 
 @WebServlet("/")
 public class DispatcherServlet extends HttpServlet {

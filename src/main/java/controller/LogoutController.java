@@ -1,5 +1,7 @@
 package controller;
 
+import controller.enums.REDIRECT;
+import controller.enums.URL;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -13,6 +15,6 @@ public class LogoutController implements Controller {
 
         System.out.println("User 로그아웃 완료");
 
-        return "redirect:/";
+        return REDIRECT.getRedirectPathString(URL.HOME);
     }
 }
