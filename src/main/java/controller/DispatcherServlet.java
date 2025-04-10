@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static controller.enums.redirect.REDIRECT;
+
 @WebServlet("/")
 public class DispatcherServlet extends HttpServlet {
     private static final RequestMapper requestMapper = new RequestMapper();
@@ -18,14 +20,26 @@ public class DispatcherServlet extends HttpServlet {
         String uriPath = getUriPath(req);
         Controller controller = requestMapper.getController(uriPath);
 
-        if (controller != null){
-            String path = controller.execute(req, resp);
-            if (!path.startsWith("redirect:")){
-                forward(path, req, resp);
-                return;
-            }
-            redirect(path.split("redirect:")[1], resp);
+        if (controller == null){
+            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            return;
         }
+        doExecute(req, resp, controller);
+    }
+
+    private void doExecute(HttpServletRequest req, HttpServletResponse resp, Controller controller) throws IOException, ServletException {
+        String path = controller.execute(req, resp);
+        if (checkAndDoRedirect(resp, path))
+            return;
+        forward(path, req, resp);
+    }
+
+    private boolean checkAndDoRedirect(HttpServletResponse resp, String path) throws IOException {
+        if (path.startsWith(REDIRECT.getRedirectSign())){
+            redirect(path.split(REDIRECT.getRedirectSign())[1], resp);
+            return true;
+        }
+        return false;
     }
 
     private static String getUriPath(HttpServletRequest req) {
