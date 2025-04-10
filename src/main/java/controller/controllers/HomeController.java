@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import controller.enums.JSP;
 import jakarta.servlet.http.HttpServletRequest;

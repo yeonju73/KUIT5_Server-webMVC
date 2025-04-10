@@ -1,4 +1,4 @@
-package controller;
+package controller.controllers;
 
 import controller.enums.REDIRECT;
 import controller.enums.URL;

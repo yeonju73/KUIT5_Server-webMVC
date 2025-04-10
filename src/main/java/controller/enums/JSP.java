@@ -1,12 +1,12 @@
 package controller.enums;
 
 public enum JSP {
-    LOGIN_FAILED("/user/login_failed"),
-    HOME("/home"),
-    REGISTER("/user/form"),
-    USER_LIST("/user/list"),
-    UPDATE_FORM("/user/updateForm"),
-    LOGIN("/user/login");
+    LOGIN_FAILED("/user/login_failed.jsp"),
+    HOME("/home.jsp"),
+    REGISTER("/user/form.jsp"),
+    USER_LIST("/user/list.jsp"),
+    UPDATE_FORM("/user/updateForm.jsp"),
+    LOGIN("/user/login.jsp");
 
     private final String jsp;
 

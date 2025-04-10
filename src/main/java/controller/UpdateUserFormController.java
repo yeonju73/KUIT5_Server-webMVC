@@ -1,5 +1,6 @@
 package controller;
 
+import controller.controllers.Controller;
 import controller.enums.JSP;
 import controller.enums.REDIRECT;
 import controller.enums.URL;

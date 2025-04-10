@@ -1,5 +1,7 @@
 package controller;
 
+import controller.controllers.*;
+
 import java.util.HashMap;
 import java.util.Map;
 

@@ -1,5 +1,6 @@
-package controller;
+package controller.controllers;
 
+import controller.RequestMapper;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -49,7 +50,7 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void forward(String path, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher(path + ".jsp");
+        RequestDispatcher rd = req.getRequestDispatcher(path);
         rd.forward(req, resp);
     }
 
